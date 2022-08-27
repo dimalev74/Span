@@ -3,6 +3,8 @@ import tkinter as tk
 from arnion.data.departments_data import DepartmentDataHandler
 from arnion.data.employees_data import EmployeeDataHandler
 from arnion.db.mysql_connection import ConnectionHandler
+from arnion.ui.departments_reports_ui import DepartmentsReportWindow
+from arnion.ui.employees_reports_ui import EmployeesReportWindow
 
 
 class MainWindow:
@@ -36,19 +38,19 @@ class MainWindow:
         lblTitle1.place(x=25, y=155, width=250, height=50)
 
         # Добавление кнопки отчетов "Отделы"
-        btn_report = tk.Button(self.window, text="Отделы",
-                               font=('Helvetica', 10, 'bold'), bg='#ccffcc')
-        btn_report.place(x=25, y=200, width=120, height=50)
+        btn_report_departments = tk.Button(self.window, text="Отделы",
+                               font=('Helvetica', 10, 'bold'), bg='#ccffcc', command=self.do_report_departments)
+        btn_report_departments.place(x=25, y=200, width=120, height=50)
 
         # Добавление кнопки отчетов "Сотрудники"
-        btn_close = tk.Button(self.window, text="Сотрудники",
-                              font=('Helvetica', 10, 'bold'), bg='#ccffcc')
-        btn_close.place(x=160, y=200, width=120, height=50)
+        btn_report_employees = tk.Button(self.window, text="Сотрудники",
+                              font=('Helvetica', 10, 'bold'), bg='#ccffcc', command=self.do_report_employees)
+        btn_report_employees.place(x=160, y=200, width=120, height=50)
 
         # Добавление кнопки "Тест"
-        btn_close = tk.Button(self.window, text="Тест",
+        btn_test = tk.Button(self.window, text="Тест",
                               font=('Helvetica', 10, 'bold'), bg='#ffffcc', command=self.do_test)
-        btn_close.place(x=25, y=300, width=120, height=50)
+        btn_test.place(x=25, y=300, width=120, height=50)
 
         # Добавление кнопки закрытия программы
         btn_close = tk.Button(self.window, text="Выход",
@@ -60,14 +62,17 @@ class MainWindow:
         employees = EmployeeDataHandler.select_list()
         for employee in employees:
             print(employee.get_full_name())
-        # departments = DepartmentDataHandler.select_list()
-        # for department in departments:
-        #     print(department.depatrment_name)
 
-        # ch = ConnectionHandler()
-        # ch.do_test()
-        # print("Test")
+    # Открытие отчета "Отделы"
+    def do_report_departments(self):
+        rpt = DepartmentsReportWindow()
+        rpt.open()
 
+
+    # Открытие отчета "Сотрудники"
+    def do_report_employees(self):
+        rpt = EmployeesReportWindow()
+        rpt.open()
 
     # Функция закрытия главного окна программы
     def close(self):
