@@ -1,7 +1,7 @@
 import tkinter as tk
 
-from arnion.data.departments_data import DepartmentDataHandler
-from arnion.data.employees_data import EmployeeDataHandler
+from arnion.data.departments_data import DepartmentDataHandler, DepartmentDataObject
+from arnion.data.employees_data import EmployeeDataHandler, EmployeeDataObject
 from arnion.db.mysql_connection import ConnectionHandler
 from arnion.ui.departments_reports_ui import DepartmentsReportWindow
 from arnion.ui.employees_reports_ui import EmployeesReportWindow
@@ -59,9 +59,30 @@ class MainWindow:
 
     # Функция "Тест"
     def do_test(self):
-        employees = EmployeeDataHandler.select_list()
-        for employee in employees:
-            print(employee.get_full_name())
+        employee = EmployeeDataObject(first_name="Ирина", middle_name="Анатольевна",
+                                      last_name="Сергеева", department_id=3)
+        print(employee.employee_id)
+        EmployeeDataHandler.insert(employee)
+        print(employee.employee_id)
+        print("Готово!")
+
+
+        # department = DepartmentDataObject(department_name="Отдел тестирования")
+        # print(department.department_id)
+        # DepartmentDataHandler.insert(department)
+        # print(department.department_id)
+        # print("Готово!")
+
+        # department = DepartmentDataHandler.select_by_id(3)
+        # print(department.department_name)
+        # department.department_name = "Отдел работы с клиентами"
+        # print(department.department_name)
+        # DepartmentDataHandler.update(department)
+        # print("Готово!")
+
+        # DepartmentDataHandler.delete_by_id(3)
+        # print("Готово!")
+
 
     # Открытие отчета "Отделы"
     def do_report_departments(self):

@@ -32,7 +32,7 @@ class DepartmentsReportWindow:
         report_text += "-------------------------------------" + os.linesep
         data_rows = DepartmentDataHandler.select_list()
         for data_row in data_rows:
-            report_text += data_row.depatrment_name + os.linesep
+            report_text += data_row.department_name + os.linesep
         return report_text
 
     def open(self):
