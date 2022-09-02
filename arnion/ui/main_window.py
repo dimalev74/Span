@@ -3,7 +3,9 @@ import tkinter as tk
 from arnion.data.departments_data import DepartmentDataHandler, DepartmentDataObject
 from arnion.data.employees_data import EmployeeDataHandler, EmployeeDataObject
 from arnion.db.mysql_connection import ConnectionHandler
+from arnion.ui.departments_data_ui import DepartmentsWindow
 from arnion.ui.departments_reports_ui import DepartmentsReportWindow
+from arnion.ui.employees_data_ui import EmployeesWindow
 from arnion.ui.employees_reports_ui import EmployeesReportWindow
 
 
@@ -25,12 +27,12 @@ class MainWindow:
 
         # Добавление кнопки данных "Отделы"
         btn_report = tk.Button(self.window, text="Отделы",
-                               font=('Helvetica', 10, 'bold'), bg='#ccffcc')
+                               font=('Helvetica', 10, 'bold'), bg='#ccffcc', command=self.do_list_departments)
         btn_report.place(x=25, y=100, width=120, height=50)
 
         # Добавление кнопки данных "Сотрудники"
         btn_close = tk.Button(self.window, text="Сотрудники",
-                              font=('Helvetica', 10, 'bold'), bg='#ccffcc')
+                              font=('Helvetica', 10, 'bold'), bg='#ccffcc', command=self.do_list_employees)
         btn_close.place(x=160, y=100, width=120, height=50)
 
         # Добавление метки заголовка отчетов
@@ -83,6 +85,15 @@ class MainWindow:
         # DepartmentDataHandler.delete_by_id(3)
         # print("Готово!")
 
+    # Открытие списка "Отделы"
+    def do_list_departments(self):
+        rpt = DepartmentsWindow()
+        rpt.open()
+
+    # Открытие списка "Сотрудники"
+    def do_list_employees(self):
+        rpt = EmployeesWindow()
+        rpt.open()
 
     # Открытие отчета "Отделы"
     def do_report_departments(self):
