@@ -102,6 +102,21 @@ class EmployeesWindow:
         # Перевод всех команд на созданное окно
         self.window.grab_set()
 
+    # Функция сохранения записи и закрытия этого окна
+    def save(self):
+        pass
+        # self.collect_from_controls()
+        # if self.and_new:
+        #     self.parent.add_record_callback(self.data_row)
+        # else:
+        #     self.parent.edit_record_callback(self.data_row)
+        # self.close()
+
     # Функция закрытия этого окна
     def close(self):
         self.window.destroy()
+
+    # Функция сбора информации с полей ввода
+    def collect_from_controls(self):
+        pass
+        # self.data_row.department_name = str(self.ent_name.get())
