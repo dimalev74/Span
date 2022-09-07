@@ -87,7 +87,7 @@ class EmployeeDataHandler:
                 insert_query = "INSERT INTO employees (first_name, middle_name, last_name, department_id) "\
                 "VALUES ('" \
                 + employee.first_name + "', '" + employee.middle_name + "', '"\
-                +employee.last_name + "', " + str(employee.department_id) + ")"
+                + employee.last_name + "', " + str(employee.department_id) + ")"
                 with cnn.cursor() as cursor:
                     cursor.execute(insert_query)
                     employee.employee_id = cursor.lastrowid
@@ -111,16 +111,44 @@ class EmployeeDataHandler:
     def update(employee: EmployeeDataObject):
         try:
             with my_connection_handler.get_connection() as cnn:
-                insert_query ="UPDATE employees SET " \
-                                "first_name='" + employee.first_name + "', " \
-                                "middle_name='" + employee.middle_name + "', " \
-                                "last_name='" + employee.last_name + "', " \
-                                "department_id=" + str(employee.department_id) + " " \
-                                + "WHERE employee_id" + str(employee.employee_id)
+                insert_query = "UPDATE employees SET " \
+                "first_name='" + employee.first_name + "', " \
+                "middle_name='" + employee.middle_name + "', " \
+                "last_name='" + employee.last_name + "', " \
+                "department_id=" + str(employee.department_id) + " " \
+                + "WHERE employee_id=" + str(employee.employee_id)
                 with cnn.cursor() as cursor:
                     cursor.execute(insert_query)
         except:
             raise
+
+    # def update(employee: EmployeeDataObject):
+    #     try:
+    #         with my_connection_handler.get_connection() as cnn:
+    #             insert_query = "UPDATE employees SET" \
+    #             "first_name='" + employee.first_name + "', " \
+    #             "middle_name='" + employee.middle_name + "', " \
+    #             "last_name='" + employee.last_name + "', " \
+    #             "department_id=" + str(employee.department_id) + " " \
+    #             + "WHERE employee_id=" + str(employee.employee_id)
+    #         with cnn.cursor() as cursor:
+    #             cursor.execute(insert_query)
+    #     except:
+    #         raise
+
+    # def update(employee: EmployeeDataObject):
+    #     try:
+    #         with my_connection_handler.get_connection() as cnn:
+    #             insert_query ="UPDATE employees SET " \
+    #                             "first_name='" + employee.first_name + "', " \
+    #                             "middle_name='" + employee.middle_name + "', " \
+    #                             "last_name='" + employee.last_name + "', " \
+    #                             "department_id=" + str(employee.department_id) + " " \
+    #                             + "WHERE employee_id" + str(employee.employee_id)
+    #             with cnn.cursor() as cursor:
+    #                 cursor.execute(insert_query)
+    #     except:
+    #         raise
 
     @staticmethod
     def delete_by_id(employee_id: int):

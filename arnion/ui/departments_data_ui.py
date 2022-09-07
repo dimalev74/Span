@@ -103,7 +103,7 @@ class DepartmentsWindow:
         self.lbox_data_rows.delete(self.selection)
 
     # Функция обновления списка
-    def refresh_listbox(self, selection:int, value: str):
+    def refresh_listbox(self, selection: int, value: str):
         self.lbox_data_rows.delete(selection,selection)
         self.lbox_data_rows.insert(selection, value)
         self.lbox_data_rows.select_set(selection)
